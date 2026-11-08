@@ -53,7 +53,7 @@ class Manager extends Employee {
 }
 ```
 
-Readonly is different. It just means the value cannot be changed after it is set. You can still read it from outside if it is public.
+Readonly is different. It just means the value cannot be changed after it is set. We can still read it from outside if it is public.
 
 ```ts
 class Product {
