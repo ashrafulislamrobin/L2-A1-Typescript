@@ -87,14 +87,18 @@ class Manager extends Employee {
   }
 }
 
-function validateAgeAsync(age: number): Promise<string> {
-  return new Promise((resolve, reject) => {
-    if (age >= 18) {
-      setTimeout(() => {
-        resolve("Access Granted");
-      }, 1000);
-    } else {
-      reject(new Error("Access Denied: Must be 18 or older"));
+async function validateAgeAsync(age: number): Promise<string> {
+  try {
+    if (age < 18) {
+      throw new Error("Access Denied: Must be 18 or older");
     }
-  });
+
+    await new Promise<void>((resolve) => {
+      setTimeout(resolve, 1000);
+    });
+
+    return "Access Granted";
+  } catch (error) {
+    throw error;
+  }
 }
